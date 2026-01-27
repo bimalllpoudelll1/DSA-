@@ -1,0 +1,27 @@
+#include <stdio.h>
+#define MAX 100
+
+int stack[MAX];
+int top = -1;
+
+// POP operation
+void pop() {
+    if (top == -1) {
+        printf("Stack Underflow! Cannot pop.\n");
+    } else {
+        printf("Popped element: %d\n", stack[top]);
+        top--;
+    }
+}
+
+int main() {
+    // sample push
+    stack[++top] = 10;
+    stack[++top] = 20;
+    stack[++top] = 30;
+
+    pop();  // removes 30
+    pop();  // removes 20
+
+    return 0;
+}
