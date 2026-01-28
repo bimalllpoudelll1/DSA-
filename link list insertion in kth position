@@ -1,0 +1,63 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Node {
+    int data;
+    struct Node* next;
+};
+
+// Insert at k-th position
+struct Node* insertAtK(struct Node* head, int data, int k) {
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode->data = data;
+    newNode->next = NULL;
+
+    // Case 1: Insert at beginning
+    if (k == 1) {
+        newNode->next = head;
+        return newNode;
+    }
+
+    struct Node* temp = head;
+
+    // Move to (k-1)th node
+    for (int i = 1; i < k - 1 && temp != NULL; i++) {
+        temp = temp->next;
+    }
+
+    // Invalid position
+    if (temp == NULL) {
+        printf("Invalid position\n");
+        free(newNode);
+        return head;
+    }
+
+    // Insert node
+    newNode->next = temp->next;
+    temp->next = newNode;
+
+    return head;
+}
+
+// Print list
+void printList(struct Node* head) {
+    while (head != NULL) {
+        printf("%d -> ", head->data);
+        head = head->next;
+    }
+    printf("NULL\n");
+}
+
+// Driver code
+int main() {
+    struct Node* head = NULL;
+
+    head = insertAtK(head, 10, 1);
+    head = insertAtK(head, 20, 2);
+    head = insertAtK(head, 30, 3);
+    head = insertAtK(head, 25, 3);
+
+    printList(head);
+
+    return 0;
+}
