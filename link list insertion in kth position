@@ -6,7 +6,7 @@ struct Node {
     struct Node* next;
 };
 
-// Insert at k-th p
+// Insert at k-th 
 struct Node* insertAtK(struct Node* head, int data, int k) {
     struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
     newNode->data = data;
